@@ -237,3 +237,8 @@ button span {
 
 }
 
+.list-group-item {
+  background-color: black;
+  border-color: gold;
+}
+

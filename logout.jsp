@@ -6,7 +6,7 @@
 <body>
 	<%
 		session.removeAttribute("username");
-		response.sendRedirect("/movierater/login.jsp");
+		response.sendRedirect("/movierater/login");
 	%>
 </body>
 </html>

@@ -1,4 +1,4 @@
-	<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-default">
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-default" style="background-color: black;">
         <a class="navbar-brand" href="#"><strong>The Movie Rater</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,13 +8,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="homepage.jsp">Home</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="browse.jsp">Browse</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Reviews</a>
+                    <a class="nav-link" href="http://localhost:8100/CS4640_Porject/Actor.html">Reviews</a>
                 </li>
             </ul>
+            <form class="form-inline my-2 my-lg-0" action="homepage.jsp" method="get">
+              <input class="form-control mr-sm-2" type="text" name=search id=search placeholder="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
             <ul class="navbar-nav ml-auto mr-5">
               <li class="nav-item">
                 <form method="post" action="logout.jsp">

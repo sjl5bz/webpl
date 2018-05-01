@@ -6,7 +6,7 @@
 <%@ page import = "json.*" %>
 <!-- directive elements -->
 
-<h3 id="searchHeader" style="color:#428bca; text-align: center; margin-top: 50px; font-family:sans-serif;"></h3>
+<!-- <h3 id="searchHeader" style="color:#428bca; text-align: center; font-style: italic; margin-top: 50px; font-family:sans-serif;"></h3> -->
 <jsp:useBean id="searchquery" class="movierater.username" scope="request"></jsp:useBean>
 
 <!-- scriplet for parsing query string -->
@@ -30,11 +30,15 @@
 	      JsonObject obj = rdr.readObject();
 	      JsonArray results = obj.getJsonArray("results");
 	%>
-	 <ul class="list-group" style="margin: 100px;">
+	 <ul class="list-group" style="margin-left: 200px; margin-right: 200px; margin-top: 75px;">
     <% for (JsonObject result : results.getValuesAs(JsonObject.class)) { %>
-       <a href="#" class="list-group-item">
+       <a href="#" class="list-group-item" style="background-color:black; border: 2px solid white;">
 		<div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1"><%=result.getString("title")%></h5>  <!-- used expression here!!! -->
+        <section style="margin-right: 100px;">
+         <h5 class="mb-1" style="color: gold;"><%=result.getString("title")%></h5>  <!-- used expression here!!!-->
+         <small class="mb-1" style="color: white;">Release date: <%=result.getString("release_date")%></small>
+         <p class="mb-1" style="color: white;"> <%=result.getString("overview")%></p>
+        </section>
       <% String poster = "https://image.tmdb.org/t/p/w300/" + result.getString("poster_path"); %>
       <img src="<%=poster%>">
     </div>
