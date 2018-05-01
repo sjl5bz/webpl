@@ -72,36 +72,6 @@ public class homepage extends HttpServlet {
 	    // if(email == null) {
 	    // 	response.sendRedirect("/movierater/login");
 	    // }
-	    
-	     out.println("msg");
-	     String msg = "";      // feedback indicating whether the query is successful
-      	 try {
-        Class.forName(JDBC_DRIVER);
-    } catch (ClassNotFoundException e) {
-        out.println("Where is your MySQL JDBC Driver?");
-        e.printStackTrace();
-        return;
-    }
-
-    out.println("MySQL JDBC Driver Registered!");
-    Connection connection = null;
-
-    try {
-        connection = DriverManager
-        .getConnection("jdbc:mysql://localhost:3306/","sjl5bz", "password");
-
-    } catch (SQLException e) {
-        out.println("Connection Failed! Check output console");
-        e.printStackTrace();
-        out.println(e);
-        return;
-    }
-
-    if (connection != null) {
-        out.println("You made it, take control your database now!");
-    } else {
-        out.println("Failed to make connection!");
-    }
 	      		
 
 	      out.close ();	
@@ -114,12 +84,12 @@ public class homepage extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 		response.setContentType ("text/html");
-		String msg = retrieveData(response);
 	    PrintWriter out = response.getWriter (); 
 		HttpSession session = request.getSession(); //sets session variable
 		String email = request.getParameter("email").toString(); //retrieves email name from input
 		request.getSession().setAttribute("email", email); //sets session attribute
 		session.setAttribute("email", email); 
+		request.getRequestDispatcher("homepage.jsp").forward(request, response);
 		doGet(request, response);
 	}
 

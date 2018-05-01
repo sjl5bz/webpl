@@ -111,7 +111,7 @@ public class login extends HttpServlet {
 	      		"			</label>\n" + 
 	      		"			<button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\" onclick=\"return validate()\" id=\"loginbutton\">Login</button>  \n" + 
 	      		"			<br/>\n" + 
-	      		"			<a id=\"createAccount\" href=\"http://localhost:8080/movierater/signup\">Create account</a>\n" + 
+	      		"			<a id=\"createAccount\" href=\"http://localhost:8100/CS4640_Porject/signup.php\">Create account</a>\n" + 
 	      		"		</form>\n" + 
 	      		"	</div>\n" + 
 	      		"	<script>\n" + 

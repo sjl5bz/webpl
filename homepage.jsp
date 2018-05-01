@@ -26,7 +26,8 @@
     <!-- scriplet that redirects to login if email is null i.e. you didn't login. Also only sets variable if POST -->
     <%
         if("POST".equalsIgnoreCase(request.getMethod())) {
-            username.setEmail(request.getParameter("email"));
+        String email = (String)request.getSession().getAttribute("email"); //retrieves session object from servlet
+            username.setEmail(email);
             String val = request.getParameter("email");
         }
         if(username.getEmail() == null) {

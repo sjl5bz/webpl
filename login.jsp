@@ -50,14 +50,7 @@
 			<a id="createAccount" href="signup.php">Create account</a>
 		</form>
 		<jsp:useBean id="username" class="movierater.username" scope="session"></jsp:useBean>
-		<!-- scriptlet -->
-		<%
-			String silo = null;
-			String objSilo1 = username.getEmail(); // Note change
-            if(username.getEmail() != null) {
-            response.sendRedirect("/movierater/homepage.jsp");
-        	}
-		 %>
+		
 	</div>
 	<script>
 		//points cursor to email input when page is loaded
