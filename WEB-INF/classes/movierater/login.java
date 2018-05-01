@@ -24,8 +24,6 @@ import java.sql.Statement;
 public class login extends HttpServlet {
     private static final long serialVersionUID = 1L;
    // JDBC driver name and database URL
-   final static String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-
    // database name = web4640
    //   Note: Looking in the wrong database and/or wrong table may results in either 
    //         cannot connect to the database, not find table, or no result set. 
@@ -34,11 +32,6 @@ public class login extends HttpServlet {
    // if you change the port number, be sure to change the localhost:port
    // for example, if you set mysql port to 3308, the following DB_URl will be 
    // jdbc:mysql://localhost:3308/web4640 (where web4640 is database name)
-   final static String DB_URL = "jdbc:mysql://localhost/sjl5bz";    
-   
-   //  Database credentials
-   final static String USER = "sjl5bz";
-   final static String PWD = "password";
       
 // If you have not completed the DB-prep extra credit, you need to create an account (to access the database) 
 //   
@@ -105,7 +98,7 @@ public class login extends HttpServlet {
 	      		"		<a class=\"navbar-brand\" href=\"#\"><strong>The Movie Rater</strong></a>\n" + 
 	      		"	</nav>\n" + 
 	      		"	<div class=\"wrapper\"> \n" + 
-	      		"		<form class=\"form-signin\" method=\"post\" action=\"http://localhost:8080/movierater/homepage\">\n" + 
+	      		"		<form class=\"form-signin\" method=\"post\" action=\"http://localhost:8100/CS4640_Porject/login.php\">\n" + 
 	      		"			<h2 class=\"form-signin-heading\">Login </h2>\n" + 
 	      		"			<input type=\"text\" name=\"email\" class=\"form-control\" placeholder=\"Email Address\" id=\"email\">\n" + 
 	      		"			<p id=\"para1\">Invalid email address</p>\n" + 
@@ -172,88 +165,6 @@ public class login extends HttpServlet {
 		// System.out.println(output);
 		doGet(request, response);
 	}
-
-	 private String retrieveData(HttpServletResponse response) throws ServletException, IOException
-   {	  
-      response.setContentType("text/html");
-      PrintWriter out = response.getWriter();
-      
-      ResultSet rs = null;
-      Statement stmt = null;
-      Connection conn = null;
-      
-      String msg = "";      // feedback indicating whether the query is successful
-      
-      try 
-      {
-         // Register JDBC driver
-         Class.forName(JDBC_DRIVER);
-         // System.out.println("MySQL JDBC Driver Registered");
-	          
-         // Open a connection
-         conn = DriverManager.getConnection(DB_URL, USER, PWD);
-         // System.out.println("Connection established");
-	   
-         // Execute SQL query
-         stmt = conn.createStatement();
-         String query = "SELECT * FROM users";
-         rs = stmt.executeQuery(query);                    
-        		
-         // Extract data from result set
-         while (rs.next())
-         {
-            // Retrieve by column name
-            String id  = rs.getString("UserID");
-  
-            // Display values on screen
-            // out.println("test_id : " + id + ", test_desc : " + desc + " <br />");            
-            msg = msg + "<br /> test_id : " + id + " <br />";
-         }	   
-                 
-         // Clean-up environment
-         if (rs != null)
-            rs.close();         
-         stmt.close();
-         conn.close();
-         // System.out.println("close database");
-                
-         Driver driver = null;
-         java.sql.DriverManager.deregisterDriver(driver);         
-         // System.out.println("deregister driver");
-         
-      } catch (SQLException se) {
-         se.printStackTrace();       // handle errors for JDBC
-      } catch (Exception e) {            
-         e.printStackTrace();        // handle errors for Class.forName
-      } finally {
-          // finally block used to close resources
-          try {
-             if (stmt != null)
-                stmt.close();
-
-             Driver driver = null;
-             java.sql.DriverManager.deregisterDriver(driver);
-
-          } catch (SQLException se2) {
-     	 // nothing we can do
-         	 
-          }             
-          try
-          {
-             if (conn != null)
-                conn.close();
-
-             Driver driver = null;
-             java.sql.DriverManager.deregisterDriver(driver);
-
-          } catch (SQLException se) {
-             se.printStackTrace();
-          } // end finally try   
-          
-       } // end try
-
-      return msg;
-   }
    
 
 }

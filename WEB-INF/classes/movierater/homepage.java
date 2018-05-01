@@ -23,7 +23,6 @@ import java.sql.Statement;
 @WebServlet("/homepage")
 public class homepage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    final static String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
 
    // database name = web4640
    //   Note: Looking in the wrong database and/or wrong table may results in either 
@@ -33,11 +32,6 @@ public class homepage extends HttpServlet {
    // if you change the port number, be sure to change the localhost:port
    // for example, if you set mysql port to 3308, the following DB_URl will be 
    // jdbc:mysql://localhost:3308/web4640 (where web4640 is database name)
-   final static String DB_URL = "jdbc:mysql://localhost:3308/hospital";    
-   
-   //  Database credentials
-   final static String USER = "root";
-   final static String PWD = "root";
       
 // If you have not completed the DB-prep extra credit, you need to create an account (to access the database) 
 //   
@@ -130,85 +124,5 @@ public class homepage extends HttpServlet {
 	}
 
 	
-	private String retrieveData(HttpServletResponse response) throws ServletException, IOException {	  
-      response.setContentType("text/html");
-      PrintWriter out = response.getWriter();
-      
-      ResultSet rs = null;
-      Statement stmt = null;
-      Connection conn = null;
-      
-      String msg = "";      // feedback indicating whether the query is successful
-      
-      try 
-      {
-         // Register JDBC driver
-         Class.forName(JDBC_DRIVER);
-         // System.out.println("MySQL JDBC Driver Registered");
-	          
-         // Open a connection
-         conn = DriverManager.getConnection(DB_URL, USER, PWD);
-         // System.out.println("Connection established");
-	   
-         // Execute SQL query
-         stmt = conn.createStatement();
-         String query = "SELECT * FROM users";
-         rs = stmt.executeQuery(query);                    
-        		
-         // Extract data from result set
-         while (rs.next())
-         {
-            // Retrieve by column name
-            String id  = rs.getString("UserID");
-  
-            // Display values on screen
-            // out.println("test_id : " + id + ", test_desc : " + desc + " <br />");            
-            msg = msg + "<br /> test_id : " + id + " <br />";
-         }	   
-                 
-         // Clean-up environment
-         if (rs != null)
-            rs.close();         
-         stmt.close();
-         conn.close();
-         // System.out.println("close database");
-                
-         Driver driver = null;
-         java.sql.DriverManager.deregisterDriver(driver);         
-         // System.out.println("deregister driver");
-         msg = query;
-      } catch (SQLException se) {
-         se.printStackTrace();       // handle errors for JDBC
-      } catch (Exception e) {            
-         e.printStackTrace();        // handle errors for Class.forName
-      } finally {
-          // finally block used to close resources
-          try {
-             if (stmt != null)
-                stmt.close();
-
-             Driver driver = null;
-             java.sql.DriverManager.deregisterDriver(driver);
-
-          } catch (SQLException se2) {
-     	 // nothing we can do
-         	 
-          }             
-          try
-          {
-             if (conn != null)
-                conn.close();
-
-             Driver driver = null;
-             java.sql.DriverManager.deregisterDriver(driver);
-
-          } catch (SQLException se) {
-             se.printStackTrace();
-          } // end finally try   
-          
-       } // end try
-
-      return msg;
-   }
 
 }

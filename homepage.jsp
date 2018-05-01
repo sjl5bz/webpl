@@ -30,25 +30,12 @@
             String val = request.getParameter("email");
         }
         if(username.getEmail() == null) {
-            response.sendRedirect("/movierater/login.jsp");
+            response.sendRedirect("/movierater/login");
         }
     %>
     <!-- getProperty -->
     <h1>Welcome <font color="green"><i><jsp:getProperty name="username" property="email" /></i></font></h1>
-        <form action="homepage.jsp" method="get">
-        <div class="col-sm-6 col-sm-offset-3">
-            <div id="imaginary_container"> 
-                <div class="input-group stylish-input-group">
-                    <input type="text" class="form-control" name=search id=search placeholder="Search" >
-                    <span class="input-group-addon">
-                        <button type="submit" onclick="return validate()">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>  
-                    </span>
-                </div>
-            </div>
-        </div>
-        </form>
+        
 </div>
     <!-- jsp include -->
     <jsp:include page="results.jsp"/>
